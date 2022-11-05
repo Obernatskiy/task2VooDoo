@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping cart</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="ShoppingCart.css">
+    <style>
+        * {box-sizing: border-box}
+        body {font-family: Verdana, sans-serif; margin:0}
+        .mySlides {display: none}
+        img {vertical-align: middle;}
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 1000px;
+            position: relative;
+            margin: auto;
+        }
+
+        /* Next & previous buttons */
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 30s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 30s ease;
+        }
+
+        .active, .dot:hover {
+            background-color: #717171;
+        }
+
+
+        @keyframes fade {
+            from {opacity: .4}
+            to {opacity: 1}
+        }
+
+
+        @media only screen and (max-width: 300px) {
+            .prev, .next,.text {font-size: 11px}
+        }
+    </style>
+    <script>var app = {
+        settings: {
+            container: $('.calendar'),
+            calendar: $('.front'),
+            days: $('.weeks span'),
+            form: $('.back'),
+            input: $('.back input'),
+            buttons: $('.back button')
+        },
+
+        init: function() {
+            instance = this;
+            settings = this.settings;
+            this.bindUIActions();
+        },
+
+        swap: function(currentSide, desiredSide) {
+            settings.container.toggleClass('flip');
+
+            currentSide.fadeOut(900);
+            currentSide.hide();
+            desiredSide.show();
+
+        },
+
+        bindUIActions: function() {
+            settings.days.on('click', function(){
+                instance.swap(settings.calendar, settings.form);
+                settings.input.focus();
+            });
+
+            settings.buttons.on('click', function(){
+                instance.swap(settings.form, settings.calendar);
+            });
+        }
+    }
+
+    app.init();</script>
+</head>
+<body>
+<section class="h-100 h-custom" style="background-color: #d2c9ff;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12">
+                <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                    <div class="card-body p-0">
+                        <div class="row g-0">
+                            <div class="col-lg-8">
+                                <div class="p-5">
+                                    <div class="d-flex justify-content-between align-items-center mb-5">
+                                        <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                                        <h6 class="mb-0 text-muted">3 items</h6>
+                                    </div>
+                                    <hr class="my-4">
+
+                                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                        <div class="col-md-2 col-lg-2 col-xl-2">
+                                            <img
+                                                    src="https://github.com/anuzbvbmaniac/Responsive-Product-Card---CSS-ONLY/blob/master/assets/img/jordan_proto.png?raw=true"
+                                                    class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-xl-3">
+                                            <h6 class="text-muted">Black</h6>
+                                            <h6 class="text-black mb-0">Jordan Proto-Lyte</h6>
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                            <button class="btn btn-link px-2"
+                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+
+                                            <input id="form1" min="0" name="quantity" value="1" type="number"
+                                                   class="form-control form-control-sm" />
+
+                                            <button class="btn btn-link px-2"
+                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                            <h6 class="mb-0">€ 44.00</h6>
+                                        </div>
+                                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                            <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                                        </div>
+                                    </div>
+
+                                    <hr class="my-4">
+
+                                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                        <div class="col-md-2 col-lg-2 col-xl-2">
+                                            <img
+                                                    src="https://github.com/anuzbvbmaniac/Responsive-Product-Card---CSS-ONLY/blob/master/assets/img/jordan_proto_red_black.png?raw=true"
+                                                    class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-xl-3">
+                                            <h6 class="text-muted">Red</h6>
+                                            <h6 class="text-black mb-0">Jordan Proto-Lyte</h6>
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                            <button class="btn btn-link px-2"
+                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+
+                                            <input id="form1" min="0" name="quantity" value="1" type="number"
+                                                   class="form-control form-control-sm" />
+
+                                            <button class="btn btn-link px-2"
+                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                            <h6 class="mb-0">€ 44.00</h6>
+                                        </div>
+                                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                            <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                                        </div>
+                                    </div>
+
+                                    <hr class="my-4">
+
+                                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                        <div class="col-md-2 col-lg-2 col-xl-2">
+                                            <img
+                                                    src="https://github.com/anuzbvbmaniac/Responsive-Product-Card---CSS-ONLY/blob/master/assets/img/jordan_proto_orange_black.png?raw=true"
+                                                    class="img-fluid rounded-3" alt="Cotton T-shirt">
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-xl-3">
+                                            <h6 class="text-muted">Orange</h6>
+                                            <h6 class="text-black mb-0">Jordan Proto-Lytet</h6>
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                                            <button class="btn btn-link px-2"
+                                                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+
+                                            <input id="form1" min="0" name="quantity" value="1" type="number"
+                                                   class="form-control form-control-sm" />
+
+                                            <button class="btn btn-link px-2"
+                                                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                            <h6 class="mb-0">€ 44.00</h6>
+                                        </div>
+                                        <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                            <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                                        </div>
+                                    </div>
+
+                                    <hr class="my-4">
+
+                                    <div class="pt-5">
+                                        <h6 class="mb-0"><a href="../ProductCard/ProductCard.html" class="text-body"><i
+                                                class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                                    </div>
+                                    <br>
+                                    <div class="slideshow-container">
+
+                                        <div class="mySlides ">
+                                            <div class="numbertext">1 / 3</div>
+                                            <img src="https://i.ebayimg.com/images/g/RZ8AAOSweyViJ-9z/s-l1600.jpg" style="width:100%">
+                                            <div class="text">First package</div>
+                                        </div>
+
+                                        <div class="mySlides ">
+                                            <div class="numbertext">2 / 3</div>
+                                            <img src="https://images.prom.ua/3390967100_w640_h640_korobki-dlya-obuvi.jpg" style="width:100%">
+                                            <div class="text">Second package</div>
+                                        </div>
+
+                                        <div class="mySlides ">
+                                            <div class="numbertext">3 / 3</div>
+                                            <img src="https://i0.wp.com/soberger.ru/wp-content/uploads/2019/12/konstruktsiya-korobki.jpg?ssl=1" style="width:100%">
+                                            <div class="text">Third package</div>
+                                        </div>
+
+                                        <a class="prev" onclick="plusSlides(-1)">❮</a>
+                                        <a class="next" onclick="plusSlides(1)">❯</a>
+
+                                    </div>
+                                    <br>
+
+                                    <div style="text-align:center">
+                                        <span class="dot" onclick="currentSlide(1)"></span>
+                                        <span class="dot" onclick="currentSlide(2)"></span>
+                                        <span class="dot" onclick="currentSlide(3)"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 bg-grey">
+                                <div class="p-5">
+                                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                                    <hr class="my-4">
+
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <h5 class="text-uppercase">items 3</h5>
+                                        <h5>€ 132.00</h5>
+                                    </div>
+
+                                    <h5 class="text-uppercase mb-3">Order packaging</h5>
+
+                                    <div class="mb-4 pb-2">
+                                        <select class="select">
+                                            <option value="1">First package</option>
+                                            <option value="2">Second package</option>
+                                            <option value="3">Third package</option>
+                                        </select>
+                                    </div>
+
+                                    <h5 class="text-uppercase mb-3">Give code</h5>
+
+                                    <div class="mb-5">
+                                        <div class="form-outline">
+                                            <input type="text" id="form3Examplea2" class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Examplea2">Enter your code</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="container">
+                                        <div class="calendar">
+                                            <div class="front">
+                                                <div class="current-date">
+                                                    <h1>Friday 4</h1>
+                                                    <h1> November 2022</h1>
+                                                </div>
+
+                                                <div class="current-month">
+                                                    <ul class="week-days">
+                                                        <li>MON</li>
+                                                        <li>TUE</li>
+                                                        <li>WED</li>
+                                                        <li>THU</li>
+                                                        <li>FRI</li>
+                                                        <li>SAT</li>
+                                                        <li>SUN</li>
+                                                    </ul>
+
+                                                    <div class="weeks">
+                                                        <div class="first">
+                                                            <span class="last-month">31</span>
+                                                            <span class="last-month">1</span>
+                                                            <span class="last-month">2</span>
+                                                            <span class="last-month">3</span>
+                                                            <span class="event">04</span>
+                                                            <span>05</span>
+                                                            <span>06</span>
+                                                        </div>
+
+                                                        <div class="second">
+                                                            <span >07</span>
+                                                            <span>08</span>
+                                                            <span >09</span>
+                                                            <span>10</span>
+                                                            <span>11</span>
+                                                            <span>12</span>
+                                                            <span>13</span>
+                                                        </div>
+
+                                                        <div class="third">
+                                                            <span>14</span>
+                                                            <span>15</span>
+                                                            <span>16</span>
+                                                            <span>17</span>
+                                                            <span class="active">18</span>
+                                                            <span>19</span>
+                                                            <span>20</span>
+                                                        </div>
+
+                                                        <div class="fourth">
+                                                            <span>21</span>
+                                                            <span>22</span>
+                                                            <span>23</span>
+                                                            <span>24</span>
+                                                            <span>25</span>
+                                                            <span>26</span>
+                                                            <span>27</span>
+                                                        </div>
+
+                                                        <div class="fifth">
+                                                            <span>28</span>
+                                                            <span>29</span>
+                                                            <span>30</span>
+                                                            <span>01</span>
+                                                            <span>02</span>
+                                                            <span>03</span>
+                                                            <span>04</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+                                            <div class="back">
+                                                <input placeholder="What's the event?">
+                                                <div class="info">
+                                                    <div class="date">
+                                                        <p class="info-date">
+                                                            Date: <span>Jan 15th, 2016</span>
+                                                        </p>
+                                                        <p class="info-time">
+                                                            Time: <span>6:35 PM</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="address">
+                                                        <p>
+                                                            Address: <span>129 W 81st St, New York, NY</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="observations">
+                                                        <p>
+                                                            Observations: <span>Be there 15 minutes earlier</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                                <div class="actions">
+                                                    <button class="save">
+                                                        Save <i class="ion-checkmark"></i>
+                                                    </button>
+                                                    <button class="dismiss">
+                                                        Dismiss <i class="ion-android-close"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <hr class="my-4">
+
+                                    <div class="d-flex justify-content-between mb-5">
+                                        <h5 class="text-uppercase">Total price</h5>
+                                        <h5>€ 132.00</h5>
+                                    </div>
+
+                                    <button type="button" class="btn btn-dark btn-block btn-lg"
+                                            data-mdb-ripple-color="dark">Register</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+</script>
+</body>
+</html>
